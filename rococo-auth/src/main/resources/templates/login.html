@@ -12,7 +12,7 @@
             <form class="form" action="#" th:action="@{/login}" method="post">
                 <h1 class="form__header">Ro<span class="form__text_gold">coco</span></h1>
                 <div th:if="${param.error}">
-                    <p class="form__error login__error">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+                    <p class="form__error">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
                 </div>
                 <div th:if="${param.logout}">
                     <p class="text-warning">You have been logged out.</p>
@@ -29,7 +29,7 @@
                 <button class="form__submit" type="submit">
                     Войти
                 </button>
-                <p class="form__paragraph">Нет аккаунта? <a th:href="@{/register}" class="form__link">Зарегистрироваться</a></p>
+                <p class="form__paragraph">Нет аккаунта? <a th:href="@{/register}" data-testid="registerLink" class="form__link">Зарегистрироваться</a></p>
             </form>
             <img class="content__image" src="../static/images/hermitage.jpg" th:src="@{images/hermitage.jpg}" alt="Эрмитаж"/>
         </section>
