@@ -35,22 +35,19 @@ spring:
     show-sql: false
     generate-ddl: true
     open-in-view: false
+  kafka:
+    bootstrap-servers: 'localhost:9092'
 rococo-front:
   base-uri: 'http://127.0.0.1:3000'
 rococo-auth:
   base-uri: 'http://127.0.0.1:9000'
 oauth2:
   client-id: 'client'
-#
-#logging:
-#  level:
-#    root: INFO
-#    org.springframework.web: DEBUG
-#    org.springframework.security: DEBUG
-#    org.springframework.security.oauth2: DEBUG
-#    org.springframework.boot.autoconfigure: DEBUG
-#
-#rococo-front:
-#  base-uri: 'http://127.0.0.1:3000'
-#rococo-auth:
-#  base-uri: 'http://127.0.0.1:9000'
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    org.springframework.boot.autoconfigure: DEBUG
+
