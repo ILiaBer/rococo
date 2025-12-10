@@ -1,6 +1,5 @@
-grpc:
-  server:
-    port: 8091
+server:
+  port: 8091
 
 spring:
   application:
