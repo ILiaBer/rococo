@@ -1,4 +1,4 @@
-package guru.qa.model;
+package guru.qa.rococo.model;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

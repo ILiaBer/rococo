@@ -1,5 +1,6 @@
 <script lang="ts">
     import {Avatar, getModalStore, getToastStore} from "@skeletonlabs/skeleton";
+    import type {ToastSettings} from "@skeletonlabs/skeleton";
     import FormWrapper from "$lib/components/FormWrapper.svelte";
     import Input from "$lib/components/formElements/Input.svelte";
     import {sessionStore} from "$lib/stores/sessionStore";
@@ -10,7 +11,8 @@
     import {blobToBase64} from "$lib/helpers/imageUtils";
     import {validateForm} from "$lib/components/forms/user/validate";
     import {apiClient} from "$lib/api/apiClient";
-    import {getLogoutLink, idTokenFromLocalStorage} from "$lib/api/authUtils";
+    import {authClient} from "$lib/api/authClient";
+    import {clearSession} from "$lib/api/authUtils";
     import ModalButtonGroup from "$lib/components/ModalButtonGroup.svelte";
 
     const modalStore = getModalStore();
@@ -61,9 +63,14 @@
     }
 
     const onLogoutClick = async() => {
-        const token = idTokenFromLocalStorage();
+        await authClient.logout();
+        clearSession();
         modalStore.close();
-        window.location.replace(getLogoutLink(token));
+        const t: ToastSettings = {
+            message: `Сессия завершена`,
+            background: 'variant-filled-tertiary',
+        };
+        toastStore.trigger(t);
     }
 
 </script>

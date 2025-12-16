@@ -1,10 +1,10 @@
-package guru.qa.service;
+package guru.qa.rococo.service;
 
-import guru.qa.data.Authority;
-import guru.qa.data.AuthorityEntity;
-import guru.qa.data.UserEntity;
-import guru.qa.data.repository.UserRepository;
-import guru.qa.model.UserJson;
+import guru.qa.rococo.data.Authority;
+import guru.qa.rococo.data.AuthorityEntity;
+import guru.qa.rococo.data.UserEntity;
+import guru.qa.rococo.data.repository.UserRepository;
+import guru.qa.rococo.model.UserJson;
 import jakarta.annotation.Nonnull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

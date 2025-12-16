@@ -22,7 +22,7 @@ public record UserJson(
 ) {
     public static UserJson fromGrpcMessage(UserResponse response) {
         return new UserJson(
-                UUID.fromString(response.getId().toString()),
+                UUID.fromString(response.getId()),
                 response.getUsername(),
                 response.getFirstname(),
                 response.getLastname(),

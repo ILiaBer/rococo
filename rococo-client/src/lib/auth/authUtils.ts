@@ -21,14 +21,8 @@ const getAuthLink = (codeChallenge: string) => {
     return `${import.meta.env.VITE_AUTH_URL}/oauth2/authorize?response_type=code&client_id=${import.meta.env.VITE_CLIENT_ID}&scope=openid&redirect_uri=${import.meta.env.VITE_FRONT_URL}/authorized&code_challenge=${codeChallenge}&code_challenge_method=S256`
 }
 
-const getTokenFromUrlEncodedParams = (code: string, verifier: string) => {
-    return new URLSearchParams({
-        "code": code,
-        "redirect_uri": `${import.meta.env.VITE_FRONT_URL}/authorized`,
-        "code_verifier": verifier,
-        "grant_type": "authorization_code",
-        "client_id": `${import.meta.env.VITE_CLIENT_ID}`,
-    });
+const getTokenUrl = (code: string, verifier: string) => {
+    return `oauth2/token?client_id=${import.meta.env.VITE_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_FRONT_URL}/authorized&grant_type=authorization_code&code=${code}&code_verifier=${verifier}`;
 }
 
 const initLocalStorageAndRedirectToAuth = async () => {
@@ -53,4 +47,4 @@ const clearSession = () => {
     });
 }
 
-export {generateCodeChallenge, generateCodeVerifier, getAuthLink, getTokenFromUrlEncodedParams, clearSession, initLocalStorageAndRedirectToAuth};
+export {generateCodeChallenge, generateCodeVerifier, getAuthLink, getTokenUrl, clearSession, initLocalStorageAndRedirectToAuth};

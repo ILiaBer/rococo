@@ -45,7 +45,7 @@ public class GrpcUserdataClient {
 
     public @Nonnull UserJson updateUser(UserJson user) {
         UpdateUserRequest request = UpdateUserRequest.newBuilder()
-                .setId(ByteString.fromHex(user.id().toString()))
+                .setId(user.id().toString())
                 .setUsername(user.username())
                 .setFirstname(user.firstname())
                 .setLastname(user.lastname())

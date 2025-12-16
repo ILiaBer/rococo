@@ -1,4 +1,4 @@
-package guru.qa.data;
+package guru.qa.rococo.data;
 
 import jakarta.persistence.*;
 import lombok.Getter;

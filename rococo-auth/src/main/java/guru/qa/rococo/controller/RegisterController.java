@@ -1,7 +1,7 @@
-package guru.qa.controller;
+package guru.qa.rococo.controller;
 
-import guru.qa.model.RegistrationModel;
-import guru.qa.service.UserService;
+import guru.qa.rococo.model.RegistrationModel;
+import guru.qa.rococo.service.UserService;
 import jakarta.annotation.Nonnull;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

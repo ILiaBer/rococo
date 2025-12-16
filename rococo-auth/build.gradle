@@ -1,10 +1,9 @@
 plugins {
-    id 'java'
     id 'org.springframework.boot' version '3.3.2'
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
-group = 'rococo'
+group = 'org.rococo'
 version = '1.0.0'
 
 dependencies {
@@ -17,17 +16,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation "org.springframework.kafka:spring-kafka:${project.ext.springKafkaVersion}"
     annotationProcessor "org.projectlombok:lombok:${project.ext.lombokVersion}"
-    implementation 'org.flywaydb:flyway-core:10.17.1'
-    implementation 'org.flywaydb:flyway-mysql:10.17.1'
     compileOnly "org.projectlombok:lombok:${project.ext.lombokVersion}"
     runtimeOnly "mysql:mysql-connector-java:${project.ext.mysqlDriverVersion}"
-    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 
-//
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//    testImplementation "com.h2database:h2:${project.ext.h2Version}"
+    testImplementation "com.h2database:h2:${project.ext.h2Version}"
 }
-
 
 tasks.named('test') {
     useJUnitPlatform()

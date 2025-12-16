@@ -1,14 +1,15 @@
 const BASE_URL = `${import.meta.env.VITE_AUTH_URL}`;
+import {Buffer} from "buffer";
 
 export const authClient = {
-    getToken: async(url: string, data: URLSearchParams) => {
+    getToken: async(url: string) => {
         const response = await fetch(`${BASE_URL}/${url}`, {
             method: "POST",
             credentials: "include",
             headers: {
-                "Content-type": "application/x-www-form-urlencoded",
-            },
-            body: data.toString()
+                "Content-type": "application/json",
+                "Authorization": `Basic ${Buffer.from("client:secret").toString("base64")}`,
+            }
         });
         if (!response.ok) {
             throw new Error("Failed loading data");
@@ -29,3 +30,4 @@ export const authClient = {
         }
     }
 }
+

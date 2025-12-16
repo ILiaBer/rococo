@@ -10,6 +10,8 @@ import org.hibernate.proxy.HibernateProxy;
 import java.util.Objects;
 import java.util.UUID;
 
+import static com.google.protobuf.ByteString.copyFromUtf8;
+
 @Getter
 @Setter
 @Entity
@@ -35,7 +37,7 @@ public class UserEntity {
 
     public static UserResponse toGrpcMessage(UserEntity entity) {
         UserResponse.Builder builder = UserResponse.newBuilder()
-                .setId(ByteString.fromHex(String.valueOf(entity.id)))
+                .setId(String.valueOf(entity.id))
                 .setUsername(entity.getUsername());
 
         if (entity.getFirstname() != null) {

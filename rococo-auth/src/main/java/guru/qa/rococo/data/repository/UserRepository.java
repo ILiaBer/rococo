@@ -1,6 +1,6 @@
-package guru.qa.data.repository;
+package guru.qa.rococo.data.repository;
 
-import guru.qa.data.UserEntity;
+import guru.qa.rococo.data.UserEntity;
 import jakarta.annotation.Nonnull;
 import org.springframework.data.jpa.repository.JpaRepository;
 

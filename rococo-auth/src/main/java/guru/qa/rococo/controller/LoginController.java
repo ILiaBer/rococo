@@ -1,4 +1,4 @@
-package guru.qa.controller;
+package guru.qa.rococo.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Value;
