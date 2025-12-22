@@ -1,0 +1,71 @@
+grpc:
+  server:
+    port: 8093
+    max-inbound-message-size: 15728640
+    max-outbound-message-size: 15728640
+
+spring:
+  autoconfigure:
+    exclude:
+      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
+  main:
+    web-application-type: none
+  application:
+    name: rococo-museum
+  datasource:
+    url: 'jdbc:mysql://localhost:3306/rococo-museum?serverTimezone=UTC&createDatabaseIfNotExist=true'
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 10
+      maximum-pool-size: 30
+      idle-timeout: 600000
+      max-lifetime: 300000
+      auto-commit: true
+    username: test
+    password: secret
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    schemas: rococo-museum
+    locations: classpath:db/migration/rococo-museum
+    table: flyway_history_museum
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    properties:
+      javax.persistence.validation.mode: CALLBACK
+      hibernate.jdbc.lob.non_contextual_creation: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+    open-in-view: false
+logging:
+  file:
+    path: .logs/rococo-museum/
+  level:
+    root: INFO
+    org.springframework.web: INFO
+
+---
+spring:
+  config:
+    activate:
+      on-profile: 'local'
+
+  datasource:
+---
+spring:
+  config:
+    activate:
+      on-profile: 'docker'
+  autoconfigure:
+    exclude:
+      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
+  datasource:
+    url: 'jdbc:mysql://rococo-all-db:3306/rococo?serverTimezone=UTC&createDatabaseIfNotExist=true'
+---

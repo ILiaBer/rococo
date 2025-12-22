@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-import "google/protobuf/empty.proto";
-
 package guru.qa.grpc.rococo;
+
+import "google/protobuf/empty.proto";
 
 option java_multiple_files = true;
 option java_package = "guru.qa.grpc.rococo.grpc";
@@ -10,7 +10,6 @@ option java_outer_classname = "RococoArtistProto";
 
 service RococoArtistService {
   rpc GetArtist(ArtistRequest) returns (ArtistResponse);
-  rpc GetArtistByName(GetArtistRequest) returns (AllArtistResponse);
   rpc GetAllArtist(AllArtistRequest) returns (AllArtistResponse);
   rpc AddArtist(AddArtistRequest) returns (ArtistResponse);
   rpc UpdateArtist(UpdateArtistRequest) returns (ArtistResponse);
@@ -18,15 +17,11 @@ service RococoArtistService {
 }
 
 message ArtistRequest {
-  bytes id = 1;
-}
-
-message GetArtistRequest{
-  string name = 1;
+  string id = 1;
 }
 
 message ArtistResponse {
-  bytes id = 1;
+  string id = 1;
   string name = 2;
   string biography = 3;
   bytes photo = 4;
@@ -50,13 +45,12 @@ message AddArtistRequest {
 }
 
 message UpdateArtistRequest {
-  bytes id = 1;
+  string id = 1;
   AddArtistRequest artistData = 2;
 }
 
-
 message ArtistIdsRequest {
-  repeated bytes id = 1;
+  repeated string id = 1;
 }
 
 message AllArtistByIdsResponse {

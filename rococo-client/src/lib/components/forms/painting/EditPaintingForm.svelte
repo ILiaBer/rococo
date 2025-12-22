@@ -46,7 +46,7 @@
             });
             content = await blobToBase64(file) as string;
         }
-        validateForm(title, description, authorId);
+        validateForm(title, description, painting?.artist?.id ?? authorId);
         if(!Object.values($paintingFormErrorStore).some(v => v.length > 0)) {
             const res = await apiClient.updatePainting({
                 id,
@@ -54,7 +54,7 @@
                 description,
                 content,
                 artist: {
-                    id: authorId,
+                    id: painting?.artist?.id ?? authorId,
                 },
                 museum: {
                     id: museumId,

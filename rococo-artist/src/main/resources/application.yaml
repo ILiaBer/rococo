@@ -1,0 +1,72 @@
+grpc:
+  server:
+    port: 8092
+    max-inbound-message-size: 50MB
+    max-outbound-message-size: 50MB
+    flow-control-window: 10485760
+    permit-keep-alive-without-calls: true
+    handshake-timeout: 30000
+    keep-alive-time: 30s
+    keep-alive-timeout: 10s
+
+spring:
+  autoconfigure:
+    exclude:
+      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
+  main:
+    web-application-type: none
+  application:
+    name: rococo-artist
+  datasource:
+    url: 'jdbc:mysql://localhost:3306/rococo-artist?serverTimezone=UTC&createDatabaseIfNotExist=true'
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 10
+      maximum-pool-size: 30
+      idle-timeout: 600000
+      max-lifetime: 300000
+      auto-commit: true
+    username: test
+    password: secret
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    schemas: rococo-artist
+    locations: classpath:db/migration/rococo-artist
+    table: flyway_history_artist
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    properties:
+      javax.persistence.validation.mode: CALLBACK
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+    open-in-view: false
+  sql:
+    init:
+      mode: always
+
+logging:
+  file:
+    path: .logs/rococo-artist/
+  level:
+    root: INFO
+    org.springframework.kafka: DEBUG
+    org.springframework.web: INFO
+    io.grpc: DEBUG
+    io.grpc.netty: DEBUG
+    io.netty: DEBUG
+    guru.qa.rococo: DEBUG
+    org.springframework: DEBUG
+    org.flywaydb: DEBUG
+    org.springframework.jdbc: DEBUG
+    org.flywaydb.core.internal.command.DbMigrate: DEBUG
+    org.flywaydb.core.internal.database.base.Database: DEBUG
