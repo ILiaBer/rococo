@@ -1,7 +1,6 @@
 plugins {
     id 'java'
 }
-
 group = 'org.rococo'
 
 allprojects {
