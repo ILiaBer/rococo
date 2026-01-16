@@ -6,8 +6,19 @@ import com.github.javafaker.Faker;
 public class InputGenerators {
     private static final Faker faker = new Faker();
 
+
     public static String randomUsername() {
         return faker.name().username();
+    }
+
+    public static String randomCyrillicUsername() {
+        int length = faker.number().numberBetween(5, 12);
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            char c = (char) faker.number().numberBetween('а', 'я' + 1);
+            sb.append(c);
+        }
+        return sb.toString();
     }
 
     public static String randomPassword() {

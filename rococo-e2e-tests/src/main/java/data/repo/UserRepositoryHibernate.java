@@ -3,8 +3,7 @@ package data.repo;
 
 import data.entities.AuthUserEntity;
 import data.entities.UserDataEntity;
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.transaction.annotation.Transactional;
+import model.UserJson;
 
 public class UserRepositoryHibernate {
     private final AuthUserRepositoryHibernate authUserDAO;
@@ -26,6 +25,26 @@ public class UserRepositoryHibernate {
 
     public void deleteUser(String username) {
         this.authUserDAO.deleteUser(username);
+    }
+
+    public void deleteUser(UserJson user) {
+        deleteUser(user.username());
+    }
+
+    public void checkUserExist(String username) {
+        this.authUserDAO.checkUserExist(username);
+    }
+
+    public void checkUserExist(UserJson user) {
+        checkUserExist(user.username());
+    }
+
+    public void checkUserNotExist(String username) {
+        this.authUserDAO.checkUserNotExist(username);
+    }
+
+    public void checkUserNotExist(UserJson user) {
+        checkUserNotExist(user.username());
     }
 
     private UserDataEntity fromAuthUser(AuthUserEntity user) {

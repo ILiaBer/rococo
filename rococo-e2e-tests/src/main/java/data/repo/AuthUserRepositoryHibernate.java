@@ -1,8 +1,8 @@
 package data.repo;
 
 import config.Config;
-
 import data.entities.AuthUserEntity;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,5 +37,27 @@ public class AuthUserRepositoryHibernate extends BaseRepository {
         }
     }
 
+    private List<AuthUserEntity> searchUser(String username) {
+        return em.createQuery(
+                        "SELECT u FROM AuthUserEntity u WHERE u.username = :username",
+                        AuthUserEntity.class)
+                .setParameter("username", username)
+                .getResultList();
+    }
 
+    @Transactional
+    public void checkUserExist(String username) {
+        List<AuthUserEntity> users = searchUser(username);
+        if (users.isEmpty()) {
+            throw new EntityNotFoundException("User " + username + " not found.");
+        }
+    }
+
+    @Transactional
+    public void checkUserNotExist(String username) {
+        List<AuthUserEntity> users = searchUser(username);
+        if (!users.isEmpty()) {
+            throw new EntityExistsException("User " + username + " exists.");
+        }
+    }
 }

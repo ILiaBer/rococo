@@ -74,7 +74,7 @@ enum LocalConfig implements Config {
     @NotNull
     @Override
     public String screenshotBaseDir() {
-        return "screenshots/local/";
+        return "img/";
     }
 }
 

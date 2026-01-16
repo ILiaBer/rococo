@@ -15,8 +15,13 @@ public abstract class BaseComponent<T> {
         this.page = page;
     }
 
-
-    public void checkVisible() {
+    public T checkVisible() {
         $(locator).shouldBe((Condition.visible));
+        return page;
+    }
+
+    public T checkNotVisible() {
+        $(locator).shouldNotBe((Condition.visible));
+        return page;
     }
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import data.entities.AuthUserEntity;
-
+import utils.InputGenerators;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -26,6 +26,17 @@ public record UserJson(
         @JsonIgnore
         TestData testData
 ) {
+
+    public static UserJson getRandomUser() {
+        return new UserJson(
+                null,
+                InputGenerators.randomUsername(),
+                InputGenerators.randomName(),
+                InputGenerators.randomSurname(),
+                null,
+                new TestData(InputGenerators.randomPassword())
+        );
+    }
 
     public static UserJson fromEntity(AuthUserEntity entity) {
         return new UserJson(
