@@ -1,5 +1,6 @@
 package ui;
 
+import ui.page.LoginPage;
 import ui.page.MainPage;
 import ui.page.RegisterPage;
 
@@ -13,5 +14,9 @@ public class AllPages {
 
     protected RegisterPage registerPage() {
         return page(RegisterPage.class);
+    }
+
+    protected LoginPage loginPage() {
+        return page(LoginPage.class);
     }
 }

@@ -11,6 +11,6 @@ public class ScreenTest extends BaseUiTest {
     @ScreenShotTest(expected = "main_page_preset.png")
     @DisplayName("Успешная авторизация")
     public void successfulLoginTest(BufferedImage expectedImage) throws IOException {
-        mainPage().welcomeScreen.checkPicturesAreIdentical(expectedImage);
+        mainPage().welcomeScreen.checkScreenshotAreIdenticalWithPic(expectedImage);
     }
 }

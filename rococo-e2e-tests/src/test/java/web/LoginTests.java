@@ -17,8 +17,9 @@ public class LoginTests extends BaseUiTest {
     @User
     @DisplayName("Успешная авторизация")
     public void successfulLoginTest(UserJson user) {
+        mainPage().loginBtn.click();
+        loginPage().login(user);
         mainPage()
-                .login(user)
                 .profileIcon.checkVisible()
                 .loginBtn.checkNotVisible();
 
@@ -28,18 +29,19 @@ public class LoginTests extends BaseUiTest {
     @User
     @DisplayName("Авторизация с неверным паролем и существующим username")
     public void authorizationWithWrongPasswordTest(UserJson user) {
-        mainPage()
-                .login(user.username(), InputGenerators.randomPassword())
-                .profileIcon.checkNotVisible()
-                .error.checkText("Неверные учетные данные пользователя");
+        mainPage().loginBtn.click();
+        loginPage().login(user.username(), InputGenerators.randomPassword());
+        mainPage().profileIcon.checkNotVisible();
+        loginPage().error.checkText("Неверные учетные данные пользователя");
     }
 
     @Test
     @User
     @DisplayName("Проверка логаута")
     public void checkLogout(UserJson user) {
+        mainPage().loginBtn.click();
+                loginPage().login(user);
         mainPage()
-                .login(user)
                 .profileIcon.click()
                 .profileModal().logout.click();
         mainPage()

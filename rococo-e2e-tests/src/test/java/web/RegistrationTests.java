@@ -14,12 +14,13 @@ public class RegistrationTests extends BaseUiTest {
     public void userCanBeRegisteredTest() {
         UserJson user = UserJson.getRandomUser();
         Selenide.open(CFG.frontUrl());
-        mainPage()
-                .loginBtn.click()
-                .registerBtn.click();
+        mainPage().loginBtn.click();
+        loginPage().registerBtn.click();
         registerPage().register(user);
+        mainPage().loginBtn.click();
+        loginPage()
+                .login(user);
         mainPage()
-                .login(user)
                 .profileIcon.checkVisible()
                 .loginBtn.checkNotVisible();
         userRepositoryHibernate.deleteUser(user);
@@ -31,11 +32,11 @@ public class RegistrationTests extends BaseUiTest {
         UserJson user = new UserJson(null, InputGenerators.randomCyrillicUsername(), null, null,
                 null, new TestData(InputGenerators.randomPassword()));
         Selenide.open(CFG.frontUrl());
-        mainPage()
-                .loginBtn.click()
-                .registerBtn.click();
+        mainPage().loginBtn.click();
+        loginPage().registerBtn.click();
         registerPage().register(user);
-      userRepositoryHibernate.checkUserExist(user);
+        userRepositoryHibernate.checkUserExist(user);
+        userRepositoryHibernate.deleteUser(user);
     }
 
     @Test
@@ -43,9 +44,8 @@ public class RegistrationTests extends BaseUiTest {
     public void userCantBeRegisteredWithNonEqualPasswordsTest() {
         UserJson user = UserJson.getRandomUser();
         Selenide.open(CFG.frontUrl());
-        mainPage()
-                .loginBtn.click()
-                .registerBtn.click();
+        mainPage().loginBtn.click();
+        loginPage().registerBtn.click();
         registerPage()
                 .usernameInput.fill(user.username())
                 .passwordInput.fill(user.testData().password())
@@ -60,9 +60,8 @@ public class RegistrationTests extends BaseUiTest {
     public void userCantBeRegisteredWithoutUsernameTest() {
         UserJson user = UserJson.getRandomUser();
         Selenide.open(CFG.frontUrl());
-        mainPage()
-                .loginBtn.click()
-                .registerBtn.click();
+        mainPage().loginBtn.click();
+        loginPage().registerBtn.click();
         registerPage()
                 .passwordInput.fill(user.testData().password())
                 .passwordSubmitInput.fill(user.testData().password())
