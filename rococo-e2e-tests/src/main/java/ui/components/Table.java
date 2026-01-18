@@ -22,15 +22,23 @@ public class Table<T> extends BaseComponent<T> {
         return $(locator).$$x(".//li//child::img");
     }
 
-    public void checkTableEmpty() {
+    public T checkTableEmpty() {
         Assertions.assertEquals(0, findAllCells().size());
+        return page;
     }
 
-    public void checkCellExistByName(String name) {
+    public T checkCellExistByName(String name) {
         findCellByName(name).shouldBe(Condition.exist);
+        return page;
     }
 
-    public void checkCellNotExistByName(String name) {
+    public T checkCellNotExistByName(String name) {
         findCellByName(name).shouldNotBe(Condition.exist);
+        return page;
+    }
+
+    public T checkTableSize(int expectedSize) {
+        Assertions.assertEquals(expectedSize, findAllCells().size());
+        return page;
     }
 }

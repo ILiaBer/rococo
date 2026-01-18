@@ -3,12 +3,12 @@ package ui.page;
 import org.openqa.selenium.By;
 import ui.components.*;
 
-public class PicturePage {
+public class PaintingPage {
 
-    public final Table<PicturePage> table = new Table<>(By.xpath("//ul[contains(@class,'grid')]"), this);
-    public final Button<PicturePage> addPicture = new Button<>(By.cssSelector("div button.variant-filled-primary"), this);
-    public final LineEdit<PicturePage> searchInput = new LineEdit<>(By.cssSelector("input[type=search]"), this);
-    public final Button<PicturePage> searchBtn = new Button<>(By.xpath("//img[@alt='Иконка поиска']//parent::button"), this);
+    public final Table<PaintingPage> table = new Table<>(By.xpath("//ul[contains(@class,'grid')]"), this);
+    public final Button<PaintingPage> addPicture = new Button<>(By.cssSelector("div button.variant-filled-primary"), this);
+    public final LineEdit<PaintingPage> searchInput = new LineEdit<>(By.cssSelector("input[type=search]"), this);
+    public final Button<PaintingPage> searchBtn = new Button<>(By.xpath("//img[@alt='Иконка поиска']//parent::button"), this);
 
 
 

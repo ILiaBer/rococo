@@ -16,13 +16,11 @@ import utils.ImageUtil;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-
-import static utils.InputGenerators.randomPaintingDescription;
-import static utils.InputGenerators.randomPaintingName;
+import java.util.Objects;
 
 
 @ParametersAreNonnullByDefault
-public class PaintingExtension implements BeforeEachCallback, ParameterResolver {
+public class PaintingExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver {
 
     public static final ExtensionContext.Namespace NAMESPACE = ExtensionContext.Namespace.create(PaintingExtension.class);
     private final PaintingRepositoryHibernate paintingRepository = new PaintingRepositoryHibernate();
@@ -62,6 +60,11 @@ public class PaintingExtension implements BeforeEachCallback, ParameterResolver 
 
                     context.getStore(NAMESPACE).put(context.getUniqueId(), PaintingJson.fromEntity(painting));
                 });
+    }
+
+    @Override
+    public void afterEach(ExtensionContext context) {
+        paintingRepository.deletePainting(Objects.requireNonNull(getPainting()).getTitle());
     }
 
     @Nullable

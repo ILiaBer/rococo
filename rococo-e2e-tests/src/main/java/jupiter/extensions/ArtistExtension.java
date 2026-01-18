@@ -12,13 +12,11 @@ import utils.ImageUtil;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-
-import static utils.InputGenerators.randomArtistBio;
-import static utils.InputGenerators.randomArtistName;
+import java.util.Objects;
 
 
 @ParametersAreNonnullByDefault
-public class ArtistExtension implements BeforeEachCallback, ParameterResolver {
+public class ArtistExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver {
 
     public static final ExtensionContext.Namespace NAMESPACE = ExtensionContext.Namespace.create(ArtistExtension.class);
     private final ArtistRepositoryHibernate artistRepository = new ArtistRepositoryHibernate();
@@ -42,6 +40,11 @@ public class ArtistExtension implements BeforeEachCallback, ParameterResolver {
                     artistRepository.createArtist(artist);
                     setArtist(ArtistJson.fromEntity(artist));
                 });
+    }
+
+    @Override
+    public void afterEach(ExtensionContext context) {
+        artistRepository.deleteArtist(Objects.requireNonNull(getArtist()).getName());
     }
 
     @Override

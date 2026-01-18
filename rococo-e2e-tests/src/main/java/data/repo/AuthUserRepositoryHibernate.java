@@ -30,7 +30,7 @@ public class AuthUserRepositoryHibernate extends BaseRepository {
                 .getResultList();
 
         if (!users.isEmpty()) {
-            AuthUserEntity user = users.get(0); // Получаем первого пользователя из списка
+            AuthUserEntity user = users.get(0);
             tx.execute(() -> em.remove(user));
         } else {
             throw new EntityNotFoundException("User " + username + " not found.");

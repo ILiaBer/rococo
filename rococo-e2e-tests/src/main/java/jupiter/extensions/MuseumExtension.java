@@ -14,6 +14,7 @@ import utils.ImageUtil;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Objects;
 import java.util.UUID;
 
 import static utils.InputGenerators.randomMuseumDescription;
@@ -21,7 +22,7 @@ import static utils.InputGenerators.randomMuseumTitle;
 
 
 @ParametersAreNonnullByDefault
-public class MuseumExtension implements BeforeEachCallback, ParameterResolver {
+public class MuseumExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver {
 
     public static final ExtensionContext.Namespace NAMESPACE = ExtensionContext.Namespace.create(MuseumExtension.class);
     private final MuseumRepositoryHibernate museumRepository = new MuseumRepositoryHibernate();
@@ -56,6 +57,11 @@ public class MuseumExtension implements BeforeEachCallback, ParameterResolver {
                     museum.setId(museumForTest.getId());
                     setMuseum(MuseumJson.fromEntity(museum));
                 });
+    }
+
+    @Override
+    public void afterEach(ExtensionContext context) {
+        museumRepository.deleteMuseum(Objects.requireNonNull(getMuseum()).getTitle());
     }
 
     @Override
