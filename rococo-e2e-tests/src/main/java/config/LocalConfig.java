@@ -37,6 +37,24 @@ enum LocalConfig implements Config {
 
     @NotNull
     @Override
+    public String paintingJdbcUrl() {
+        return "jdbc:mysql://localhost:3306/rococo-painting";
+    }
+
+    @NotNull
+    @Override
+    public String artistJdbcUrl() {
+        return "jdbc:mysql://localhost:3306/rococo-artist";
+    }
+
+    @NotNull
+    @Override
+    public String museumJdbcUrl() {
+        return "jdbc:mysql://localhost:3306/rococo-museum";
+    }
+
+    @NotNull
+    @Override
     public String geoJdbcUrl() {
         return "jdbc:mysql://localhost:3306/rococo-geo";
     }

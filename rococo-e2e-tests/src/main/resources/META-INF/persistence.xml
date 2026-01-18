@@ -17,6 +17,45 @@
     <persistence-unit name="jdbc:mysql://localhost:3306/rococo-userdata" transaction-type="JTA">
         <jta-data-source>java:comp/env/jdbc/rococo-userdata</jta-data-source>
         <class>data.entities.UserDataEntity</class>
+        <properties>
+            <property name="hibernate.transaction.jta.platform" value="com.atomikos.icatch.jta.hibernate4.AtomikosPlatform"/>
+            <property name="hibernate.connection.handling_mode" value="DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="jdbc:mysql://localhost:3306/rococo-painting" transaction-type="JTA">
+        <jta-data-source>java:comp/env/jdbc/rococo-painting</jta-data-source>
+        <class>data.entities.PaintingEntity</class>
+        <properties>
+            <property name="hibernate.transaction.jta.platform" value="com.atomikos.icatch.jta.hibernate4.AtomikosPlatform"/>
+            <property name="hibernate.connection.handling_mode" value="DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="jdbc:mysql://localhost:3306/rococo-museum" transaction-type="JTA">
+        <jta-data-source>java:comp/env/jdbc/rococo-museum</jta-data-source>
+        <class>data.entities.MuseumEntity</class>
+        <properties>
+            <property name="hibernate.transaction.jta.platform" value="com.atomikos.icatch.jta.hibernate4.AtomikosPlatform"/>
+            <property name="hibernate.connection.handling_mode" value="DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="jdbc:mysql://localhost:3306/rococo-artist" transaction-type="JTA">
+        <jta-data-source>java:comp/env/jdbc/rococo-artist</jta-data-source>
+        <class>data.entities.ArtistEntity</class>
+        <properties>
+            <property name="hibernate.transaction.jta.platform" value="com.atomikos.icatch.jta.hibernate4.AtomikosPlatform"/>
+            <property name="hibernate.connection.handling_mode" value="DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="jdbc:mysql://localhost:3306/rococo-geo" transaction-type="JTA">
+        <jta-data-source>java:comp/env/jdbc/rococo-geo</jta-data-source>
         <class>data.entities.CountryEntity</class>
         <properties>
             <property name="hibernate.transaction.jta.platform" value="com.atomikos.icatch.jta.hibernate4.AtomikosPlatform"/>

@@ -23,6 +23,15 @@ public interface Config {
     String userdataJdbcUrl();
 
     @Nonnull
+    String paintingJdbcUrl();
+
+    @Nonnull
+    String museumJdbcUrl();
+
+    @Nonnull
+    String artistJdbcUrl();
+
+    @Nonnull
     String geoJdbcUrl();
 
     @Nonnull
