@@ -10,12 +10,10 @@ public class PaintingTests extends BaseUiTest{
 
     @Test
     @DisplayName("WEB: Редактирование заголовка и описания картины")
-//    @ApiLogin(user = @User())
+    @ApiLogin(user = @User())
     @Museum
-    @User
-    @Artist
     @Painting
-    void check(UserJson user) {
-        commonSteps().login(user);
+    void check() {
+        System.out.println();
     }
 }

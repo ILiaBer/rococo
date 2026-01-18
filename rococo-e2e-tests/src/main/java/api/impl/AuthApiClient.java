@@ -21,7 +21,7 @@ public class AuthApiClient extends RestClient {
     private final AuthApi authApi;
 
     public AuthApiClient() {
-        super(CFG.authUrl(), true, new CodeInterceptor());
+        super(CFG.authUrl(), false, new CodeInterceptor());
         this.authApi = create(AuthApi.class);
     }
 
@@ -61,6 +61,11 @@ public class AuthApiClient extends RestClient {
                 password,
                 ThreadSafeCookieStore.INSTANCE.cookieValue("XSRF-TOKEN")
         ).execute();
+
+        String code = ApiLoginExtension.getCode();
+        if (code == null) {
+            throw new IllegalStateException("Authorization code is null");
+        }
 
         Response<JsonNode> tokenResponse = authApi.token(
                 ApiLoginExtension.getCode(),

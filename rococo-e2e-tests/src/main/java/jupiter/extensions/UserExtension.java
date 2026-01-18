@@ -62,8 +62,6 @@ public class UserExtension implements BeforeEachCallback, AfterEachCallback, Par
 
     @Override
     public void afterEach(ExtensionContext context) throws Exception {
-//        User userAnnotation = context.getRequiredTestMethod().getAnnotation(User.class);
-        // Получаем имя пользователя из созданного объекта UserJson
         UserJson createdUser = createdUser();
         if (createdUser != null) {
             userRepositoryHibernate.deleteUser(createdUser.username());
