@@ -1,17 +1,11 @@
 package ui.components;
 
-import com.codeborne.selenide.SelenideElement;
 import config.Config;
-import org.apache.commons.io.IOUtils;
 import org.openqa.selenium.By;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Base64;
 
 import static com.codeborne.selenide.Selenide.$;
 

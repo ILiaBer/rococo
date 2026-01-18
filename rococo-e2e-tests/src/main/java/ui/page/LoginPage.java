@@ -16,18 +16,4 @@ public class LoginPage {
     public final Button<LoginPage> submitBtn = new Button<>(By.cssSelector("button[type='submit']"), this);
     public final Button<LoginPage> registerBtn = new Button<>(By.xpath("//*[@data-testid='registerLink']"), this);
     public final Label<LoginPage> error = new Label<>(By.cssSelector("form p"), this);
-
-    @Step("Залогиниться")
-    public LoginPage login(String username, String password) {
-        usernameInput.fill(username);
-        passwordInput.fill(password);
-        submitBtn.click();
-        return this;
-    }
-
-    @Step("Залогиниться")
-    public LoginPage login(UserJson user) {
-        login(user.username(), user.testData().password());
-        return this;
-    }
 }

@@ -5,6 +5,8 @@ import data.entities.AuthUserEntity;
 import data.entities.UserDataEntity;
 import model.UserJson;
 
+import java.util.Optional;
+
 public class UserRepositoryHibernate {
     private final AuthUserRepositoryHibernate authUserDAO;
     private final UserDataRepositoryHibernate userDataDAO;
@@ -33,6 +35,10 @@ public class UserRepositoryHibernate {
 
     public void checkUserExist(String username) {
         this.authUserDAO.checkUserExist(username);
+    }
+
+    public UserDataEntity getUser(String username) {
+        return this.userDataDAO.searchUser(username).stream().findFirst().orElseThrow();
     }
 
     public void checkUserExist(UserJson user) {

@@ -3,6 +3,7 @@ package ui;
 import ui.page.LoginPage;
 import ui.page.MainPage;
 import ui.page.RegisterPage;
+import ui.steps.CommonSteps;
 
 import static com.codeborne.selenide.Selenide.page;
 
@@ -18,5 +19,9 @@ public class AllPages {
 
     protected LoginPage loginPage() {
         return page(LoginPage.class);
+    }
+
+    protected CommonSteps commonSteps() {
+        return page(CommonSteps.class);
     }
 }

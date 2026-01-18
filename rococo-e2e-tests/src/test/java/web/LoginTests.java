@@ -17,20 +17,17 @@ public class LoginTests extends BaseUiTest {
     @User
     @DisplayName("Успешная авторизация")
     public void successfulLoginTest(UserJson user) {
-        mainPage().loginBtn.click();
-        loginPage().login(user);
+        commonSteps().login(user);
         mainPage()
                 .profileIcon.checkVisible()
                 .loginBtn.checkNotVisible();
-
     }
 
     @Test
     @User
     @DisplayName("Авторизация с неверным паролем и существующим username")
     public void authorizationWithWrongPasswordTest(UserJson user) {
-        mainPage().loginBtn.click();
-        loginPage().login(user.username(), InputGenerators.randomPassword());
+        commonSteps().login(user.username(), InputGenerators.randomPassword());
         mainPage().profileIcon.checkNotVisible();
         loginPage().error.checkText("Неверные учетные данные пользователя");
     }
@@ -39,8 +36,7 @@ public class LoginTests extends BaseUiTest {
     @User
     @DisplayName("Проверка логаута")
     public void checkLogout(UserJson user) {
-        mainPage().loginBtn.click();
-                loginPage().login(user);
+        commonSteps().login(user);
         mainPage()
                 .profileIcon.click()
                 .profileModal().logout.click();

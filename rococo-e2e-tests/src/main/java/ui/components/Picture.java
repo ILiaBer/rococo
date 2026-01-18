@@ -41,20 +41,15 @@ public class Picture<T> extends BaseComponent<T> {
                 "src",
                 "^data:image/.*;base64,.*"
         ));
-
         String src = $(locator).getAttribute("src");
-
         String base64 = src.substring(src.indexOf(',') + 1);
         byte[] bytes = Base64.getDecoder().decode(base64);
-
         try {
             File tempFile = File.createTempFile("image-from-html-", ".png");
             tempFile.deleteOnExit();
-
             try (FileOutputStream fos = new FileOutputStream(tempFile)) {
                 fos.write(bytes);
             }
-
             return tempFile;
         } catch (IOException e) {
             throw new RuntimeException("Failed to create file from img src", e);

@@ -17,9 +17,7 @@ public class RegistrationTests extends BaseUiTest {
         mainPage().loginBtn.click();
         loginPage().registerBtn.click();
         registerPage().register(user);
-        mainPage().loginBtn.click();
-        loginPage()
-                .login(user);
+        commonSteps().login(user);
         mainPage()
                 .profileIcon.checkVisible()
                 .loginBtn.checkNotVisible();
