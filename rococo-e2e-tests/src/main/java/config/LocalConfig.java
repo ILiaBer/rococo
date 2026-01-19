@@ -14,13 +14,13 @@ enum LocalConfig implements Config {
 
     @Override
     public String frontUrl() {
-        return "http://127.0.0.1:3000/";
+        return "http://127.0.0.1:3000";
     }
 
     @Nonnull
     @Override
     public String gatewayUrl() {
-        return "http://127.0.0.1:8080/";
+        return "http://127.0.0.1:8090/";
     }
 
     @NotNull
@@ -61,7 +61,7 @@ enum LocalConfig implements Config {
 
     @Override
     public String authUrl() {
-        return "http://127.0.0.1:9000/";
+        return "http://127.0.0.1:9000";
     }
 
     @Override

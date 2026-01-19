@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 
 import static com.google.protobuf.ByteString.copyFromUtf8;
-import static io.qameta.allure.Allure.step;
 import static java.util.UUID.randomUUID;
 import static model.PaintingJson.fromGrpcMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -100,7 +99,6 @@ public class PaintingGrpcTest extends BaseTest {
         assertEquals(0, response.getTotalCount());
     }
 
-
     @Test
     @Museum
     @Artist
@@ -135,9 +133,7 @@ public class PaintingGrpcTest extends BaseTest {
         AllPaintingResponse response =
                 paintingStub.getAllPaintingByArtistId(request);
 
-        step("Проверить, что список картин пустой", () -> {
-            assertEquals(0, response.getPaintingCount());
-            assertEquals(0, response.getTotalCount());
-        });
+        assertEquals(0, response.getPaintingCount());
+        assertEquals(0, response.getTotalCount());
     }
 }

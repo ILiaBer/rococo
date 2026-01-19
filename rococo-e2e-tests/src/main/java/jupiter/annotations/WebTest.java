@@ -2,7 +2,6 @@ package jupiter.annotations;
 
 
 import io.qameta.allure.junit5.AllureJunit5;
-import jupiter.extensions.ApiLoginExtension;
 import jupiter.extensions.BrowserExtension;
 import jupiter.extensions.ScreenShotTestExtension;
 import jupiter.extensions.UserExtension;
@@ -19,7 +18,6 @@ import java.lang.annotation.Target;
         BrowserExtension.class,
         AllureJunit5.class,
         UserExtension.class,
-        ApiLoginExtension.class,
         ScreenShotTestExtension.class
 })
 public @interface WebTest {
