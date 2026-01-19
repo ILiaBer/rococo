@@ -41,10 +41,6 @@ public class InputGenerators {
         return faker.lorem().fixedString(charCount);
     }
 
-    public static String randomMuseumTitle() {
-        return "Государственный музей №" + randomNumber(1, 9999);
-    }
-
     public static String randomMuseumDescription() {
         return randomSentence(20);
     }

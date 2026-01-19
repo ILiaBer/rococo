@@ -48,4 +48,8 @@ public record UserJson(
                 new TestData(entity.getEncodedPassword())
         );
     }
+
+    public UserJson(String username, String password) {
+        this(null, username, null, null, null, new TestData(password));
+    }
 }

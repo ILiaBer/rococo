@@ -1,8 +1,6 @@
 package ui.page;
 
-import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import model.UserJson;
 import org.openqa.selenium.By;
 import ui.components.Button;
 import ui.components.Label;

@@ -45,4 +45,45 @@ public class LoginTests extends BaseUiTest {
                 .profileIcon.checkNotVisible()
                 .loginBtn.checkVisible();
     }
+
+    @Test
+    @User
+    @DisplayName("Попытка авторизации с несуществующим пользователем")
+    public void loginWithNonExistingUserTest(UserJson user) {
+        UserJson fakeUser = new UserJson(InputGenerators.randomUsername(), InputGenerators.randomPassword());
+        commonSteps().login(fakeUser);
+        loginPage().error.checkText("Неверные учетные данные пользователя");
+        mainPage().profileIcon.checkNotVisible();
+    }
+
+    @Test
+    @User
+    @DisplayName("Логин с пустым username")
+    public void loginWithEmptyUsernameTest(UserJson user) {
+        commonSteps().login("", user.testData().password());
+        mainPage().profileIcon.checkNotVisible();
+        loginPage()
+                .usernameInput.checkVisible()
+                .passwordInput.checkVisible();
+    }
+
+    @Test
+    @User
+    @DisplayName("Логин с пустым паролем")
+    public void loginWithEmptyPasswordTest(UserJson user) {
+        commonSteps().login(user.username(), "");
+        mainPage().profileIcon.checkNotVisible();
+        loginPage()
+                .usernameInput.checkVisible()
+                .passwordInput.checkVisible();
+    }
+
+    @Test
+    @User
+    @DisplayName("Авторизация с пробелами")
+    public void loginWithWhitespaceTest(UserJson user) {
+        commonSteps().login("  " + user.username() + "  ", "  " + user.testData().password() + "  ");
+        loginPage().error.checkText("Неверные учетные данные пользователя");
+        mainPage().profileIcon.checkNotVisible();
+    }
 }
