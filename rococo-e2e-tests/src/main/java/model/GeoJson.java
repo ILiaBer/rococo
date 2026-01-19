@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@AllArgsConstructor
+//@AllArgsConstructor
 public class GeoJson {
     @JsonProperty("city")
     private String city;
@@ -27,5 +28,14 @@ public class GeoJson {
     @Override
     public int hashCode() {
         return Objects.hash(city, country);
+    }
+
+    @JsonCreator
+    public GeoJson(
+            @JsonProperty("city") String city,
+            @JsonProperty("country") CountryJson country
+    ) {
+        this.city = city;
+        this.country = country;
     }
 }

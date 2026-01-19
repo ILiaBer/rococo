@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static utils.InputGenerators.randomName;
 
 @GrpcTest
-public class GeoGrpcTest extends BaseTest {
+public class GeoGrpcTests extends BaseTest {
 
     private static final Config CFG = Config.getInstance();
     private static final Channel geoChannel;

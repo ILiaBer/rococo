@@ -1,6 +1,8 @@
 package utils;
 
 import api.impl.ArtistApiClient;
+import api.impl.MuseumApiClient;
+import api.impl.PaintingApiClient;
 import config.Config;
 import data.DataPresets;
 import data.entities.ArtistEntity;
@@ -19,6 +21,8 @@ public class BaseTest {
     protected static final MuseumRepositoryHibernate museumRepositoryHibernate = new MuseumRepositoryHibernate();
     protected static final ArtistRepositoryHibernate artistRepositoryHibernate = new ArtistRepositoryHibernate();
     protected static final ArtistApiClient artistApiClient = new ArtistApiClient();
+    protected static final MuseumApiClient museumApiClient = new MuseumApiClient();
+    protected static final PaintingApiClient paintingApiClient = new PaintingApiClient();
 
     @BeforeAll
     public static void createContentPresetsIfNotExist() {

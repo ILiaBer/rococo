@@ -19,13 +19,12 @@ import utils.BaseTest;
 import java.util.UUID;
 
 import static com.google.protobuf.ByteString.copyFromUtf8;
-import static io.qameta.allure.Allure.step;
 import static model.MuseumJson.fromGrpcMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @GrpcTest
-public class MuseumGrpcTest extends BaseTest {
+public class MuseumGrpcTests extends BaseTest {
 
     private static final Channel museumChannel;
 
@@ -80,7 +79,7 @@ public class MuseumGrpcTest extends BaseTest {
 
         MuseumResponse museumResponse = museumStub.getAllMuseum(request).getMuseum(0);
 
-       assertEquals(createdMuseum, fromGrpcMessage(museumResponse));
+        assertEquals(createdMuseum, fromGrpcMessage(museumResponse));
     }
 
     @Test

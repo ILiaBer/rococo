@@ -32,6 +32,8 @@ public class MuseumJson {
         this.geo = geo;
     }
 
+
+
     public MuseumJson() {
     }
 

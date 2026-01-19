@@ -20,7 +20,7 @@ import static model.ArtistJson.fromGrpcMessage;
 import static org.junit.jupiter.api.Assertions.*;
 
 @GrpcTest
-public class ArtistGrpcTest extends BaseTest {
+public class ArtistGrpcTests extends BaseTest {
 
     private static final Channel artistChannel;
 

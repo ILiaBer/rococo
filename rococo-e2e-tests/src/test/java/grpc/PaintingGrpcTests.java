@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static utils.InputGenerators.randomPaintingName;
 
 @GrpcTest
-public class PaintingGrpcTest extends BaseTest {
+public class PaintingGrpcTests extends BaseTest {
 
     private static final Channel paintingChannel;
 
