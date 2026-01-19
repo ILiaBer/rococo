@@ -7,6 +7,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ArtistRepositoryHibernate extends BaseRepository {
 
@@ -15,8 +16,16 @@ public class ArtistRepositoryHibernate extends BaseRepository {
     }
 
     @Transactional
-    public void createArtist(ArtistEntity artist) {
+    public ArtistEntity createArtist(ArtistEntity artist) {
         tx.execute(() -> em.persist(artist));
+        return artist;
+    }
+
+    @Transactional
+    public Optional<ArtistEntity> getArtistByName(String name) {
+        return Optional.ofNullable(em.createQuery("select artist from ArtistEntity artist where artist.name=:name", ArtistEntity.class)
+                .setParameter("name", name)
+                .getSingleResult());
     }
 
     @Transactional

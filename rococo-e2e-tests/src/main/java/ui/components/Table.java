@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class Table<T> extends BaseComponent<T> {
 
@@ -19,6 +20,7 @@ public class Table<T> extends BaseComponent<T> {
     }
 
     private ElementsCollection findAllCells() {
+        sleep(500);
         return $(locator).$$x(".//li//child::img");
     }
 
@@ -34,6 +36,11 @@ public class Table<T> extends BaseComponent<T> {
 
     public T checkCellNotExistByName(String name) {
         findCellByName(name).shouldNotBe(Condition.exist);
+        return page;
+    }
+
+    public T clickCellByName(String name) {
+        findCellByName(name).click();
         return page;
     }
 

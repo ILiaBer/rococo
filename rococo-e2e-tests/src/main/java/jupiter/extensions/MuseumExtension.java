@@ -17,9 +17,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 import java.util.UUID;
 
-import static utils.InputGenerators.randomMuseumDescription;
-import static utils.InputGenerators.randomMuseumTitle;
-
 
 @ParametersAreNonnullByDefault
 public class MuseumExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver {

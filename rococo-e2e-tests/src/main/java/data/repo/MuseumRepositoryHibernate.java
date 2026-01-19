@@ -3,11 +3,11 @@ package data.repo;
 
 import config.Config;
 import data.entities.MuseumEntity;
-import data.entities.PaintingEntity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MuseumRepositoryHibernate extends BaseRepository {
 
@@ -20,6 +20,19 @@ public class MuseumRepositoryHibernate extends BaseRepository {
         tx.execute(() -> em.persist(museum));
         return museum;
     }
+
+    @Transactional
+    public Optional<MuseumEntity> getMuseumByName(String title) {
+        return em.createQuery(
+                        "select m from MuseumEntity m where m.title = :title",
+                        MuseumEntity.class
+                )
+                .setParameter("title", title)
+                .getResultList()
+                .stream()
+                .findFirst();
+    }
+
 
     @Transactional
     public void deleteMuseum(String title) {

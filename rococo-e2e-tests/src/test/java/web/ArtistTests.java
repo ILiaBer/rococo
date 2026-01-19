@@ -1,5 +1,6 @@
 package web;
 
+import data.DataPresets;
 import jupiter.annotations.Artist;
 import jupiter.annotations.User;
 import jupiter.annotations.WebTest;
@@ -23,5 +24,21 @@ public class ArtistTests extends BaseUiTest {
                 .searchBtn.click()
                 .table.checkCellExistByName(artist.getName())
                 .table.checkTableSize(1);
+    }
+
+    @Test
+    @User
+    @DisplayName("Картины отображаются в профиле художника")
+    void checkPaintingsAreDisplayedOnArtistProfile(UserJson user) {
+        commonSteps().login(user);
+        mainPage().artists.click();
+        artistsPage()
+                .searchInput.fill(DataPresets.getTitian().getName())
+                .searchBtn.click()
+                .table.clickCellByName(DataPresets.getTitian().getName())
+                .previewArtistModal()
+                .table.checkCellExistByName(DataPresets.getFlagellationOfChrist().getTitle())
+                .table.checkCellExistByName(DataPresets.getTheHeavenlyLoveAndEarthlyLove().getTitle())
+                .table.checkTableSize(2);
     }
 }

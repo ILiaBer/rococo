@@ -2,11 +2,13 @@ package data.repo;
 
 
 import config.Config;
+import data.entities.ArtistEntity;
 import data.entities.PaintingEntity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PaintingRepositoryHibernate extends BaseRepository {
 
@@ -17,6 +19,13 @@ public class PaintingRepositoryHibernate extends BaseRepository {
     @Transactional
     public void createPainting(PaintingEntity painting) {
         tx.execute(() -> em.persist(painting));
+    }
+
+    @Transactional
+    public Optional<PaintingEntity> getPaintingByName(String title) {
+        return Optional.ofNullable(em.createQuery("select artist from PaintingEntity artist where artist.title=:title", PaintingEntity.class)
+                .setParameter("title", title)
+                .getSingleResult());
     }
 
     @Transactional
