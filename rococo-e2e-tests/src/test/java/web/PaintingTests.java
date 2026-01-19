@@ -5,6 +5,7 @@ import model.PaintingJson;
 import model.UserJson;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ui.BaseUiTest;
 
 @WebTest
 public class PaintingTests extends BaseUiTest {

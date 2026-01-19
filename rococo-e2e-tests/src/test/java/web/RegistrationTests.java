@@ -5,6 +5,7 @@ import model.TestData;
 import model.UserJson;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ui.BaseUiTest;
 import utils.InputGenerators;
 
 public class RegistrationTests extends BaseUiTest {

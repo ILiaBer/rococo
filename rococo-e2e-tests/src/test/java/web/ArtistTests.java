@@ -8,6 +8,7 @@ import model.ArtistJson;
 import model.UserJson;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ui.BaseUiTest;
 
 @WebTest
 public class ArtistTests extends BaseUiTest {

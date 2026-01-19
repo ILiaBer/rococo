@@ -1,6 +1,5 @@
 package guru.qa.rococo.service.api;
 
-import com.google.protobuf.ByteString;
 import guru.qa.grpc.rococo.grpc.*;
 import guru.qa.rococo.model.ArtistJson;
 import io.grpc.Status;
@@ -20,8 +19,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-
-import static com.google.protobuf.ByteString.copyFromUtf8;
 
 @Component
 public class GrpcArtistClient {

@@ -1,6 +1,5 @@
 package web;
 
-import data.entities.AuthUserEntity;
 import data.entities.UserDataEntity;
 import jupiter.annotations.User;
 import jupiter.annotations.WebTest;
@@ -8,10 +7,10 @@ import model.UserJson;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ui.BaseUiTest;
 import utils.InputGenerators;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @WebTest
 public class EditAccountTests extends BaseUiTest {

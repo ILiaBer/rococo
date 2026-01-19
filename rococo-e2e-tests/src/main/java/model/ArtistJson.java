@@ -3,11 +3,14 @@ package model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.protobuf.ByteString;
 import data.entities.ArtistEntity;
+import guru.qa.grpc.rococo.grpc.ArtistResponse;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Objects;
 import java.util.UUID;
+
+import static java.util.UUID.fromString;
 
 @Getter
 @Setter
@@ -32,14 +35,14 @@ public class ArtistJson {
 
     }
 
-//    public static ArtistJson fromGrpcMessage(ArtistResponse response) {
-//        ArtistJson artistJson = new ArtistJson();
-//        artistJson.setId(fromString(response.getId()));
-//        artistJson.setName(response.getName());
-//        artistJson.setBiography(response.getBiography());
-//        artistJson.setPhoto(response.getPhoto().toStringUtf8());
-//        return artistJson;
-//    }
+    public static ArtistJson fromGrpcMessage(ArtistResponse response) {
+        ArtistJson artistJson = new ArtistJson();
+        artistJson.setId(fromString(response.getId()));
+        artistJson.setName(response.getName());
+        artistJson.setBiography(response.getBiography());
+        artistJson.setPhoto(response.getPhoto().toStringUtf8());
+        return artistJson;
+    }
 
     public static ArtistJson fromEntity(ArtistEntity entity) {
         ArtistJson artistJson = new ArtistJson();

@@ -7,6 +7,7 @@ import model.MuseumJson;
 import model.UserJson;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ui.BaseUiTest;
 
 @WebTest
 public class MuseumTest extends BaseUiTest {

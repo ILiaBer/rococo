@@ -82,7 +82,7 @@ dependencies {
     implementation "io.grpc:grpc-netty:${grpcVersion}"
     implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
-    testImplementation project(':rococo-grpc-common')
+    implementation project(':rococo-grpc-common')
     implementation 'jakarta.annotation:jakarta.annotation-api:1.3.5' // Java 9+ compatibility - Do NOT update to 2.0.0
     // Lombok
     annotationProcessor "org.projectlombok:lombok:${project.ext.lombokVersion}"

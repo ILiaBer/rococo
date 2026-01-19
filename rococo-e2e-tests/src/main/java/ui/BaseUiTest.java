@@ -1,8 +1,7 @@
-package web;
+package ui;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
-import config.Config;
 import data.DataPresets;
 import data.entities.ArtistEntity;
 import data.entities.MuseumEntity;
@@ -13,15 +12,12 @@ import data.repo.UserRepositoryHibernate;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import ui.AllPages;
 
 public class BaseUiTest extends AllPages {
     protected static final UserRepositoryHibernate userRepositoryHibernate = new UserRepositoryHibernate();
     protected static final PaintingRepositoryHibernate paintingRepositoryHibernate = new PaintingRepositoryHibernate();
     protected static final MuseumRepositoryHibernate museumRepositoryHibernate = new MuseumRepositoryHibernate();
     protected static final ArtistRepositoryHibernate artistRepositoryHibernate = new ArtistRepositoryHibernate();
-
-    protected static final Config CFG = Config.getInstance();
 
     @BeforeAll
     public static void createContentPresetsIfNotExist() {

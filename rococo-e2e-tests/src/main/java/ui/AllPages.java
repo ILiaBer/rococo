@@ -2,10 +2,11 @@ package ui;
 
 import ui.page.*;
 import ui.steps.CommonSteps;
+import utils.BaseTest;
 
 import static com.codeborne.selenide.Selenide.page;
 
-public class AllPages {
+public class AllPages extends BaseTest {
 
     protected MainPage mainPage() {
         return page(MainPage.class);
