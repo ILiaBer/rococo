@@ -17,7 +17,6 @@ import java.util.UUID;
 
 import static com.google.protobuf.ByteString.copyFromUtf8;
 import static data.ModelsGenerator.getRandomCountry;
-import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.*;
 import static utils.InputGenerators.randomName;
 
@@ -46,9 +45,8 @@ public class GeoGrpcTest extends BaseTest {
                 .build();
 
         CountryResponse countryResponse = geoStub.getCountry(request);
-
-        step("Проверить название страны в ответе", () -> assertEquals(country.name(), countryResponse.getName()));
-        step("Проверить id страны в ответе", () -> assertEquals(country.id(), UUID.fromString(countryResponse.getId().toStringUtf8())));
+        assertEquals(country.name(), countryResponse.getName());
+        assertEquals(country.id(), UUID.fromString(countryResponse.getId().toStringUtf8()));
     }
 
     @Test
@@ -61,8 +59,8 @@ public class GeoGrpcTest extends BaseTest {
 
         CountryResponse countryResponse = geoStub.getCountryByName(request);
 
-        step("Проверить название страны в ответе", () -> assertEquals(country.name(), countryResponse.getName()));
-        step("Проверить id страны в ответе", () -> assertEquals(country.id(), UUID.fromString(countryResponse.getId().toStringUtf8())));
+        assertEquals(country.name(), countryResponse.getName());
+        assertEquals(country.id(), UUID.fromString(countryResponse.getId().toStringUtf8()));
     }
 
 

@@ -16,7 +16,6 @@ import utils.BaseTest;
 
 import java.util.UUID;
 
-import static io.qameta.allure.Allure.step;
 import static model.ArtistJson.fromGrpcMessage;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,8 +45,7 @@ public class ArtistGrpcTest extends BaseTest {
                 .build();
 
         ArtistResponse artistResponse = artistStub.getArtist(request);
-
-        step("Проверить ответ", () -> assertEquals(createdArtist, fromGrpcMessage(artistResponse)));
+        assertEquals(createdArtist, fromGrpcMessage(artistResponse));
     }
 
     @Test
@@ -79,18 +77,12 @@ public class ArtistGrpcTest extends BaseTest {
 
         AllArtistResponse firstPage = artistStub.getAllArtist(firstPageRequest);
         AllArtistResponse secondPage = artistStub.getAllArtist(secondPageRequest);
+        assertEquals(1, firstPage.getArtistsCount());
 
-        step("Проверить, что на первой странице один элемент",
-                () -> assertEquals(1, firstPage.getArtistsCount()));
-
-        step("Проверить, что на второй странице один элемент",
-                () -> assertEquals(1, secondPage.getArtistsCount()));
-
-        step("Проверить, что элементы на страницах разные",
-                () -> assertNotEquals(
-                        firstPage.getArtists(0).getId(),
-                        secondPage.getArtists(0).getId()
-                ));
+        assertEquals(1, secondPage.getArtistsCount());
+        assertNotEquals(
+                firstPage.getArtists(0).getId(),
+                secondPage.getArtists(0).getId());
     }
 
     @Test
@@ -106,6 +98,6 @@ public class ArtistGrpcTest extends BaseTest {
 
         ArtistResponse artistResponse = artistStub.getAllArtist(request).getArtists(0);
 
-        step("Проверить ответ", () -> assertEquals(createdArtist, fromGrpcMessage(artistResponse)));
+        assertEquals(createdArtist, fromGrpcMessage(artistResponse));
     }
 }
