@@ -1,6 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '3.3.2'
     id 'io.spring.dependency-management' version '1.1.6'
+    id 'com.google.cloud.tools.jib' version '3.4.1'
 }
 
 group = 'org.rococo'
@@ -22,3 +23,30 @@ dependencies {
     implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
     implementation 'org.glassfish:jakarta.el:5.0.0-M1'
 }
+
+jib {
+    container {
+        ports = ['8092']
+        jvmFlags = ["-Dspring.profiles.active=${System.getenv("PROFILE")}"]
+        creationTime = 'USE_CURRENT_TIMESTAMP'
+        labels = [
+                'version'   : "${project.version}".toString()
+        ]
+    }
+    from {
+        image = "${project.ext.dockerImage}"
+        platforms {
+            platform {
+                architecture = "${project.ext.dockerArch}"
+                os = 'linux'
+            }
+        }
+    }
+    to {
+        image = "${project.ext.dockerHubName}/${project.name}-${System.getenv("PROFILE")}"
+        tags = ['latest', "${project.version}"]
+    }
+}
+
+tasks.jib.dependsOn test
+tasks.jibDockerBuild.dependsOn test

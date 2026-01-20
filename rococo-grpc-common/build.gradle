@@ -1,7 +1,7 @@
 buildscript {
     ext {
         protobufVersion = '3.25.3'
-        grpcVersion = '1.58.0'
+        grpcVersion = '1.63.0'
     }
 }
 

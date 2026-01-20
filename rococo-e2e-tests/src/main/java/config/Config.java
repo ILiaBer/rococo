@@ -3,8 +3,10 @@ package config;
 import javax.annotation.Nonnull;
 
 public interface Config {
-    static @Nonnull Config getInstance() {
-        return LocalConfig.INSTANCE;
+    static Config getInstance() {
+        return "docker".equals(System.getProperty("test.env"))
+                ? DockerConfig.INSTANCE
+                : LocalConfig.INSTANCE;
     }
 
     @Nonnull

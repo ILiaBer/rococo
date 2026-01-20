@@ -3,15 +3,9 @@ grpc:
     port: 8094
 
 spring:
-  autoconfigure:
-    exclude:
-      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
-      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
-      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
   application:
     name: rococo-geo
   datasource:
-    url: 'jdbc:mysql://localhost:3306/rococo-geo?serverTimezone=UTC&createDatabaseIfNotExist=true'
     hikari:
       connection-timeout: 20000
       minimum-idle: 10
@@ -19,7 +13,7 @@ spring:
       idle-timeout: 10000
       max-lifetime: 1000
       auto-commit: true
-    username: test
+    username: root
     password: secret
   flyway:
     enabled: true
@@ -42,6 +36,7 @@ spring:
     show-sql: false
     open-in-view: false
 
+
 logging:
   file:
     path: .logs/rococo-geo/
@@ -50,3 +45,28 @@ logging:
     org.springframework.web: INFO
     org.flywaydb.core: DEBUG
     org.hibernate.SQL: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: 'local'
+  autoconfigure:
+    exclude:
+      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
+  datasource:
+    url: 'jdbc:mysql://localhost:3306/rococo-geo?serverTimezone=UTC&createDatabaseIfNotExist=true'
+---
+spring:
+  config:
+    activate:
+      on-profile: 'docker'
+  autoconfigure:
+    exclude:
+      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
+  datasource:
+    url: 'jdbc:mysql://rococo-all-db:3306/rococo-geo?serverTimezone=UTC&createDatabaseIfNotExist=true'

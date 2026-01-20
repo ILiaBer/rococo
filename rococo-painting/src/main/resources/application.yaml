@@ -10,15 +10,9 @@ grpc:
     keep-alive-timeout: 10s
 
 spring:
-  autoconfigure:
-    exclude:
-      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
-      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
-      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
   application:
     name: rococo-painting
   datasource:
-    url: 'jdbc:mysql://localhost:3306/rococo-painting?serverTimezone=UTC&createDatabaseIfNotExist=true'
     hikari:
       connection-timeout: 20000
       minimum-idle: 10
@@ -26,11 +20,11 @@ spring:
       idle-timeout: 600000
       max-lifetime: 300000
       auto-commit: true
-    username: test
+    username: root
     password: secret
   flyway:
     enabled: true
-    repair--on-migrate: true
+    repair-on-migrate: true
     baseline-on-migrate: true
     baseline-version: 0
     schemas: rococo-painting
@@ -59,3 +53,28 @@ logging:
     io.netty: DEBUG
     guru.qa.rococo: DEBUG
     org.springframework: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: 'local'
+  autoconfigure:
+    exclude:
+      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
+  datasource:
+    url: 'jdbc:mysql://localhost:3306/rococo-painting?serverTimezone=UTC&createDatabaseIfNotExist=true'
+---
+spring:
+  config:
+    activate:
+      on-profile: 'docker'
+  autoconfigure:
+    exclude:
+      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
+  datasource:
+    url: 'jdbc:mysql://rococo-all-db:3306/rococo-painting?serverTimezone=UTC&createDatabaseIfNotExist=true'

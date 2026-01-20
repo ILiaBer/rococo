@@ -7,11 +7,6 @@ server:
 spring:
   application:
     name: rococo-gateway
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: 'http://127.0.0.1:9000'
 
 logging:
   file:
@@ -21,6 +16,17 @@ logging:
     org.springframework.web: DEBUG
     org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: 'local'
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: 'http://127.0.0.1:9000'
 
 grpc:
   client:
@@ -56,3 +62,55 @@ grpc:
 
 rococo-front:
   base-uri: 'http://127.0.0.1:3000'
+---
+spring:
+  config:
+    activate:
+      on-profile: 'docker'
+  autoconfigure:
+    exclude:
+      - 'org.springframework.cloud.vault.config.VaultAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultObservationAutoConfiguration'
+      - 'org.springframework.cloud.vault.config.VaultReactiveAutoConfiguration'
+      - 'org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration'
+      - 'org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration'
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: 'http://auth.rococo.dc:9000'
+
+grpc:
+  client:
+    grpcUserdataClient:
+      address: 'static://userdata.rococo.dc:8091'
+      negotiationType: PLAINTEXT
+      enableKeepAlive: true
+      max-inbound-message-size: 50MB
+      max-outbound-message-size: 50MB
+    grpcArtistClient:
+      address: 'static://artist.rococo.dc:8092'
+      negotiationType: PLAINTEXT
+      enableKeepAlive: true
+      max-inbound-message-size: 50MB
+      max-outbound-message-size: 50MB
+    grpcMuseumClient:
+      address: 'static://museum.rococo.dc:8093'
+      negotiationType: PLAINTEXT
+      enableKeepAlive: true
+      max-inbound-message-size: 50MB
+      max-outbound-message-size: 50MB
+    grpcGeoClient:
+      address: 'static://geo.rococo.dc:8094'
+      negotiationType: PLAINTEXT
+      max-inbound-message-size: 50MB
+      max-outbound-message-size: 50MB
+    grpcPaintingClient:
+      address: 'static://painting.rococo.dc:8095'
+      negotiationType: PLAINTEXT
+      enableKeepAlive: true
+      max-inbound-message-size: 50MB
+      max-outbound-message-size: 50MB
+
+rococo-front:
+  base-uri: 'http://client.rococo.dc'
