@@ -208,46 +208,13 @@ services:
     networks:
       - rococo-network
 
-  selenoid:
-    profiles:
-      - test
-    container_name: selenoid
-    image: aerokube/selenoid:1.11.3
-    platform: linux/${ARCH}
-    volumes:
-      - ./selenoid:/etc/selenoid
-      - /var/run/docker.sock:/var/run/docker.sock
-    shm_size: 2g
-    environment:
-      - TZ=Europe/Moscow
-    restart: unless-stopped
-    command: [ "-conf", "/etc/selenoid/browsers.json", "-limit", "3", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "rococo_rococo-network" ]
-    ports:
-      - 4444:4444
-    networks:
-      - rococo-network
-
-  selenoid-ui:
-    profiles:
-      - test
-    container_name: selenoid-ui
-    image: aerokube/selenoid-ui:1.10.11
-    depends_on:
-      - selenoid
-    restart: unless-stopped
-    ports:
-      - 9091:8080
-    command: [ "--selenoid-uri", "http://selenoid:4444" ]
-    networks:
-      - rococo-network
-
-  rococo-tests:
+  rococo-e2e-tests:
     profiles: [ test ]
-    container_name: rococo-tests
-    image: ${PREFIX}/rococo-tests-docker:latest
+    container_name: rococo-e2e-tests
+    image: ${PREFIX}/rococo-e2e-tests:latest
     build:
       context: ./
-      dockerfile: ./rococo-tests/Dockerfile
+      dockerfile: ./rococo-e2e-tests/Dockerfile
     environment:
       - ALLURE_DOCKER_API=${ALLURE_DOCKER_API}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
@@ -255,40 +222,11 @@ services:
       - HEAD_COMMIT_MESSAGE=${HEAD_COMMIT_MESSAGE}
       - EXECUTION_TYPE=${EXECUTION_TYPE}
     volumes:
-      - ./allure-results:/rococo/rococo-tests/build/allure-results/
-      - ./rococo-tests/.screen-output/screenshots/selenoid:/rococo/rococo-tests/.screen-output/screenshots/selenoid
+      - ./allure-results:/rococo/rococo-e2e-tests/build/allure-results/
+      - ./rococo-e2e-tests/.screen-output/screenshots/selenoid:/rococo/rococo-e2e-tests/.screen-output/screenshots/selenoid
     depends_on:
       client.rococo.dc:
         condition: service_started
-    networks:
-      - rococo-network
-
-  allure:
-    profiles: [ test ]
-    container_name: allure
-    image: frankescobar/allure-docker-service:2.27.0
-    depends_on:
-      - rococo-tests
-    environment:
-      - CHECK_RESULTS_EVERY_SECONDS=1
-      - KEEP_HISTORY=1
-    volumes:
-      - ./allure-results:/app/allure-results
-    ports:
-      - 5050:5050
-    networks:
-      - rococo-network
-
-  allure-ui:
-    profiles: [ test ]
-    container_name: allure-ui
-    image: frankescobar/allure-docker-service-ui:7.0.3
-    depends_on:
-      - allure
-    environment:
-      - ALLURE_DOCKER_PUBLIC_API_URL=http://localhost:5050
-    ports:
-      - 5252:5252
     networks:
       - rococo-network
 
@@ -297,6 +235,4 @@ networks:
     driver: bridge
 
 volumes:
-  allure-results:
-    external: true
   mysql-data:

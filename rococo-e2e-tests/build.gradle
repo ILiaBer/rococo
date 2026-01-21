@@ -93,8 +93,10 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-tasks.withType(Test) {
-    systemProperties(System.getProperties())
+test {
+    options {
+        systemProperties(System.getProperties())
+    }
     testLogging.showStandardStreams = true
     testLogging.exceptionFormat = 'full'
     useJUnitPlatform()

@@ -7,12 +7,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 enum DockerConfig implements Config {
     INSTANCE;
 
-    static {
-        Configuration.remote = "http://selenoid:4444/wd/hub";
-        Configuration.browserSize = "1920x1080";
-        Configuration.browserCapabilities = new ChromeOptions()
-                .addArguments("--no-sandbox");
-    }
 
     @Override
     public String frontUrl() {
@@ -93,6 +87,6 @@ enum DockerConfig implements Config {
     @NotNull
     @Override
     public String screenshotBaseDir() {
-        return "screenshots/selenoid/";
+        return "img/";
     }
 }

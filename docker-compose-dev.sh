@@ -2,10 +2,8 @@
 source ./docker.properties
 export PROFILE=docker
 export PREFIX="${IMAGE_PREFIX}"
-export ARCH=$(uname -m)
 
 docker compose down
-
 docker_containers=$(docker ps -a -q)
 docker_images=$(docker images --format '{{.Repository}}:{{.Tag}}' | grep 'rococo')
 
@@ -26,7 +24,7 @@ bash ./gradlew clean
 if [ "$1" = "push" ]; then
   echo "### Build & push images ###"
   bash ./gradlew jib -x :rococo-e2e-tests:test
-  docker compose push rococo.client.dc
+  docker compose push client.rococo.dc
 else
   echo "### Build images ###"
   bash ./gradlew jibDockerBuild -x :rococo-e2e-tests:test
