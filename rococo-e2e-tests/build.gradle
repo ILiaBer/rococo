@@ -2,7 +2,7 @@ buildscript {
     ext {
         protobufVersion = '3.25.3'
         grpcVersion = '1.63.0'
-        allureVersion = '2.29.1'
+        allureVersion = '2.30.0'
         selenideVersion = '7.10.0'
         atomicosVersion = '6.0.0'
         okhttp3Version = '4.11.0'

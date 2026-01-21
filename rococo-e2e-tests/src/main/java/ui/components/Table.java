@@ -16,6 +16,7 @@ public class Table<T> extends BaseComponent<T> {
     }
 
     private SelenideElement findCellByName(String cellName) {
+        sleep(500);
         return $(locator).$$x(".//li//child::*[.='" + cellName + "']").first();
     }
 
