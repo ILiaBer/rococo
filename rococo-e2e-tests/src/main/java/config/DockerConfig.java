@@ -26,37 +26,37 @@ enum DockerConfig implements Config {
     @NotNull
     @Override
     public String authJdbcUrl() {
-        return "jdbc:mysql://rococo-all-db:3306/rococo-auth";
+        return "jdbc:mysql://localhost:3306/rococo-auth";
     }
 
     @NotNull
     @Override
     public String userdataJdbcUrl() {
-        return "jdbc:mysql://rococo-all-db:3306/rococo-userdata";
+        return "jdbc:mysql://localhost:3306/rococo-userdata";
     }
 
     @NotNull
     @Override
     public String paintingJdbcUrl() {
-        return "jdbc:mysql://rococo-all-db:3306/rococo-painting";
+        return "jdbc:mysql://localhost:3306/rococo-painting";
     }
 
     @NotNull
     @Override
     public String museumJdbcUrl() {
-        return "jdbc:mysql://rococo-all-db:3306/rococo-museum";
+        return "jdbc:mysql://localhost:3306/rococo-museum";
     }
 
     @NotNull
     @Override
     public String artistJdbcUrl() {
-        return "jdbc:mysql://rococo-all-db:3306/rococo-artist";
+        return "jdbc:mysql://localhost:3306/rococo-artist";
     }
 
     @NotNull
     @Override
     public String geoJdbcUrl() {
-        return "jdbc:mysql://rococo-all-db:3306/rococo-geo";
+        return "jdbc:mysql://localhost:3306/rococo-geo";
     }
 
     @Override

@@ -26,7 +26,7 @@ enum LocalConfig implements Config {
     @NotNull
     @Override
     public String authJdbcUrl() {
-        return "jdbc:mysql://127.0.0.1:3306/rococo-auth";
+        return "jdbc:mysql://localhost:3306/rococo-auth";
     }
 
     @NotNull

@@ -27,7 +27,7 @@ public class DataSources {
                     dsBean.setXaDataSourceClassName("com.mysql.cj.jdbc.MysqlXADataSource");
                     Properties props = new Properties();
                     props.put("url", jdbcUrl);
-                    props.put("user", "test");
+                    props.put("user", "root");
                     props.put("password", "secret");
                     dsBean.setXaProperties(props);
                     dsBean.setPoolSize(3);

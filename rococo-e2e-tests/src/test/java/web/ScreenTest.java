@@ -2,6 +2,7 @@ package web;
 
 import jupiter.annotations.ScreenShotTest;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import ui.BaseUiTest;
 
 import java.awt.image.BufferedImage;
