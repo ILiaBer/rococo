@@ -1,8 +1,6 @@
 package config;
 
-import com.codeborne.selenide.Configuration;
 import org.jetbrains.annotations.NotNull;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 enum DockerConfig implements Config {
     INSTANCE;

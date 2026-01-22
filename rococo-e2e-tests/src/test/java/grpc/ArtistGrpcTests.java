@@ -1,6 +1,7 @@
 package grpc;
 
 
+import config.Config;
 import guru.qa.grpc.rococo.grpc.*;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
@@ -21,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @GrpcTest
 public class ArtistGrpcTests extends BaseTest {
+    private static final Config CFG = Config.getInstance();
 
     private static final Channel artistChannel;
 

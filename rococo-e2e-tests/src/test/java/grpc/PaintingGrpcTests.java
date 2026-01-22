@@ -1,5 +1,6 @@
 package grpc;
 
+import config.Config;
 import guru.qa.grpc.rococo.grpc.*;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
@@ -24,6 +25,7 @@ import static utils.InputGenerators.randomPaintingName;
 
 @GrpcTest
 public class PaintingGrpcTests extends BaseTest {
+    private static final Config CFG = Config.getInstance();
 
     private static final Channel paintingChannel;
 

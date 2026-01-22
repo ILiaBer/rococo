@@ -2,6 +2,7 @@ package ui;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import config.Config;
 import data.DataPresets;
 import data.entities.ArtistEntity;
 import data.entities.MuseumEntity;
@@ -17,6 +18,7 @@ public class BaseUiTest extends AllPages {
 
     @BeforeEach
     public void openUI() {
+        Config CFG = Config.getInstance();
         Selenide.open(CFG.frontUrl());
     }
 

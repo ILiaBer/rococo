@@ -114,3 +114,8 @@ bash docker-compose-dev.sh
 ## Результат работы автотестов:
 
 <img src="allureResults2.png" width="600">
+
+## Прочее
+- Окружение для запуска автотестов можно изменить, отредактировав параметр test.env в файле настроек 
+rococo-e2e-tests/src/test/resources/at.properties
+- При необходимости, images микросервисов можно найти в [репозитории](https://hub.docker.com/repositories/ililoz)

@@ -1,6 +1,7 @@
 package web;
 
 import com.codeborne.selenide.Selenide;
+import config.Config;
 import model.TestData;
 import model.UserJson;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +10,7 @@ import ui.BaseUiTest;
 import utils.InputGenerators;
 
 public class RegistrationTests extends BaseUiTest {
+    private static final Config CFG = Config.getInstance();
 
     @Test
     @DisplayName("Юзер может быть зарегестрирован")

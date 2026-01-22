@@ -1,5 +1,6 @@
 package jupiter.extensions;
 
+import config.PropertiesLoader;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -13,6 +14,7 @@ public class TestMethodContextExtension implements BeforeEachCallback, AfterEach
     @Override
     public void beforeEach(ExtensionContext context) throws Exception {
         store.set(context);
+        System.setProperty("test.env", PropertiesLoader.get("test.env"));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package grpc;
 
+import config.Config;
 import guru.qa.grpc.rococo.grpc.AllMuseumRequest;
 import guru.qa.grpc.rococo.grpc.MuseumRequest;
 import guru.qa.grpc.rococo.grpc.MuseumResponse;
@@ -25,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @GrpcTest
 public class MuseumGrpcTests extends BaseTest {
+    private static final Config CFG = Config.getInstance();
 
     private static final Channel museumChannel;
 

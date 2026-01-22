@@ -14,7 +14,6 @@ import data.repo.UserRepositoryHibernate;
 import org.junit.jupiter.api.BeforeAll;
 
 public class BaseTest {
-    protected static final Config CFG = Config.getInstance();
 
     protected static final UserRepositoryHibernate userRepositoryHibernate = new UserRepositoryHibernate();
     protected static final PaintingRepositoryHibernate paintingRepositoryHibernate = new PaintingRepositoryHibernate();

@@ -28,8 +28,6 @@ public class BrowserExtension implements
         Configuration.timeout = 8000;
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
-        System.setProperty("test.env", "docker");
-        System.out.println(System.getProperty("test.env") + "!!!!!!!!!!!!!!!!!");
         if ("docker".equals(System.getProperty("test.env"))) {
             if ("chrome".equals(Configuration.browser)) {
                 Configuration.browserVersion = "143.0";
