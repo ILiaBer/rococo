@@ -26,7 +26,7 @@ public class Table<T> extends BaseComponent<T> {
     }
 
     public T checkTableEmpty() {
-        Assertions.assertEquals(0, findAllCells().size());
+        $(locator).shouldNotBe(Condition.exist);
         return page;
     }
 

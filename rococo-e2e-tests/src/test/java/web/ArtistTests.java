@@ -9,6 +9,7 @@ import model.UserJson;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ui.BaseUiTest;
+import utils.InputGenerators;
 
 @WebTest
 public class ArtistTests extends BaseUiTest {
@@ -41,5 +42,38 @@ public class ArtistTests extends BaseUiTest {
                 .table.checkCellExistByName(DataPresets.getFlagellationOfChrist().getTitle())
                 .table.checkCellExistByName(DataPresets.getTheHeavenlyLoveAndEarthlyLove().getTitle())
                 .table.checkTableSize(2);
+    }
+
+    @Test
+    @User
+    @DisplayName("Создание художника")
+    void checkArtistCanBeAdded(UserJson user) {
+        String name = InputGenerators.randomArtistName();
+        commonSteps().login(user);
+        mainPage().artists.click();
+        artistsPage()
+                .addArtist.click();
+        artistsPage()
+                .addArtistModal()
+                .name.fill(name)
+                .biography.fill(InputGenerators.randomArtistBio())
+                .imageUpload.uploadFile("test.png")
+                .submit.click();
+        artistsPage()
+                .table.checkCellExistByName(name);
+        artistRepositoryHibernate.deleteArtist(name);
+    }
+
+    @Test
+    @User
+    @DisplayName("Поиск по несуществующему художнику")
+    void checkSearchWithNoResults(UserJson user) {
+        commonSteps().login(user);
+        mainPage().artists.click();
+
+        artistsPage()
+                .searchInput.fill("Non Existing Artist")
+                .searchBtn.click()
+                .table.checkTableEmpty();
     }
 }

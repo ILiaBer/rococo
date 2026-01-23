@@ -16,19 +16,19 @@ public class Select <T> extends ui.components.BaseComponent<T> {
     }
 
 
-    public Select choose(String variant) {
+    public T choose(String variant) {
         $(locator).shouldBe(Condition.visible);
         $(locator).scrollTo();
-        ElementsCollection list = $(locator).findAll(By.xpath("//option"));
+        ElementsCollection list = $(locator).findAll(By.xpath(".//option"));
         for (SelenideElement row : list) {
             if (row.getText().contains(variant)) {
                 row.shouldBe(Condition.exist);
                 row.scrollTo();
                 row.shouldBe(Condition.visible);
                 row.click();
-                return this;
+                return page;
             }
         }
-        return this;
+        return page;
     }
 }

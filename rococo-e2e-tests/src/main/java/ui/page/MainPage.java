@@ -10,6 +10,7 @@ import ui.components.UploadFile;
 @Slf4j
 public class MainPage {
 
+    public final Picture<MainPage> sidebar = new Picture<>(By.cssSelector("div[data-testid=app-bar]"), this);
     public final Button<MainPage> paintings = new Button<>(By.cssSelector("img[alt='Ссылка на картины']"), this);
     public final Button<MainPage> artists = new Button<>(By.cssSelector("img[alt='Ссылка на художников']"), this);
     public final Button<MainPage> museum = new Button<>(By.cssSelector("img[alt='Ссылка на музеи']"), this);

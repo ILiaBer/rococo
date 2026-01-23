@@ -24,7 +24,7 @@ public class PaintingPage {
                 new Select<>(By.cssSelector("select[name=authorId]"), this);
 
         public final LineEdit<AddPictureModal> description =
-                new LineEdit<>(By.cssSelector("text[name=description]"), this);
+                new LineEdit<>(By.cssSelector("textarea[name=description]"), this);
 
         public final Select<AddPictureModal> museumStorage =
                 new Select<>(By.cssSelector("select[name=museumId]"), this);
