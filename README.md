@@ -87,7 +87,7 @@ docker volume create rococo-mysql
 #### 2. Прописать в etc/hosts элиас для Docker
 
 ```posh
-$ vi /etc/hosts
+ /etc/hosts
 ```
 
 ```posh
